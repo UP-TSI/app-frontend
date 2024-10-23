@@ -1,4 +1,4 @@
-import { BarChart } from "./filters/BarChart";
+import { BarChart } from "./statistics/BarChart";
 import { PieChart } from "./statistics/PieChart";
 
 const mockPieData = [
