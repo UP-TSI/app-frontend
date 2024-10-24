@@ -29,3 +29,13 @@ interface InfoTableResponse {
   mainDataResponse: MainDataResponse;
   filterResponse: Filter;
 }
+
+interface FilterLineProps {
+  field: string;
+  inputFields: Record<string, string>;
+}
+
+interface ToggleFilterProps {
+  isFilterOpen: boolean;
+  setIsFilterOpen: (value: boolean) => void;
+}
