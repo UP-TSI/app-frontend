@@ -1,7 +1,7 @@
 import Filters from "./filters/Filters";
 import Pagination from "./table/Pagination";
 import Table from "./table/Table";
-import { mockItems } from "../main-dashboard/table/mockData";
+import { mockItems } from "./table/mockData";
 import {
   LoaderFunctionArgs,
   useLoaderData,
