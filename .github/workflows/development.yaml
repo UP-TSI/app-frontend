@@ -1,4 +1,4 @@
-name: 🚀 Development Deploy
+name: Development Deploy
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v3
-  #     - name: 🧪 Testing Frontend
+  #     - name: 🧪 Testing Backend
   #       uses: actions/setup-node@v3
   #       with:
   #         node-version: 14
@@ -29,8 +29,9 @@ jobs:
         id: deploy
         uses: pinkasey/cpanel-repository-action@v1.0.0
         with:
-          hostname: ${{ vars.CPANEL_DOMAIN }}
-          repository_root: ${{ secrets.CPANEL_REPOSITORIES_PATH }}/${{ vars.REPOSITORY_NAME }}-dev
+          hostname: ${{ secrets.CPANEL_DOMAIN }}
+          cPanelApiPort: 2082
+          repository_root: ${{ vars.CPANEL_REPOSITORIES_PATH }}-front-dev
           cpanel_username: ${{ secrets.CPANEL_USERNAME }}
           cpanel_token: ${{ secrets.CPANEL_API_TOKEN_DEV }}
           branch: ${{ steps.extract_branch.outputs.branch }}

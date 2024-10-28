@@ -32,7 +32,8 @@ const InfoTable = () => {
     Object.entries(filters).forEach(([key, value]) => {
       params.append(key, value.toString());
     });
-
+    
+    console.log(mainDataResponse)
     navigate(`?${params.toString()}`);
   };
 
