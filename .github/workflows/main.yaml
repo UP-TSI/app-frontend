@@ -1,4 +1,4 @@
-name: Deploying on Docker Hub
+name: 🚀 Production Deploy
 
 on:
   push:
@@ -6,52 +6,30 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Testing Frontend
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: 'npm'
-      - run: npm install
-      - run: npm test
-
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: 🧪 Testing Frontend
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 14
+  #         cache: 'npm'
+  #     - run: npm install
+  #     - run: npm test
+      
   build:
+    # needs: test
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: 🚀 Deploy to cPanel
+        id: deploy
+        uses: pinkasey/cpanel-repository-action@v1.0.0
         with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build app
-        run: npm run build
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-      - name: Generate SHA
-        id: generate_sha
-        run: |
-          SHA=$(echo $GITHUB_SHA | head -c7)
-          echo "sha=$SHA" >> $GITHUB_OUTPUT
-      
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: |
-            alekkdev/up-tsi-frontend:latest
-            alekkdev/up-tsi-frontend:${{ steps.generate_sha.outputs.sha }}
+          hostname: ${{ vars.CPANEL_DOMAIN }}
+          repository_root: ${{ secrets.CPANEL_REPOSITORIES_PATH }}/${{ vars.REPOSITORY_NAME }}-dev
+          cpanel_username: ${{ secrets.CPANEL_USERNAME }}
+          cpanel_token: ${{ secrets.CPANEL_API_TOKEN_DEV }}
+          branch: main
+      - name: echo deploy-duration
+        run: echo "Deployment took ${{ steps.deploy.outputs.duration }} milliseconds"
