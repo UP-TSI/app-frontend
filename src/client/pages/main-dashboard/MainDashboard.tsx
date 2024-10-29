@@ -8,7 +8,7 @@ const MainDashboard = () => {
     <>
       <div className="flex bg-gradient-to-b from-[#00AAFF42] to-white to-25% flex-col p-16">
         <Header />
-        <InfoTable />
+        {/* <InfoTable /> */}
         <Statistic />
       </div>
       <Footer />
