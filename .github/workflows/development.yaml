@@ -8,31 +8,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Latest Code
+      - name: 📈 Get Latest Code
         uses: actions/checkout@v3
 
-      - name: Set up Node 20
+      - name: 👾 Set up Node 20
         uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: Build Project
+      - name: 🔨 Build Project
         run: | 
           npm install
           npm run build
-        
-      - name: 🧩 Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
       
       - name: 🚀 Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
-          username: ${{ secrets.CPANEL_FTP_USERNAME }}
-          password: ${{ secrets.CPANEL_FTP_PASS }}
+          username: ${{ secrets.CPANEL_DEV_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_DEV_FTP_PASS }}
           protocol: ${{ secrets.CPANEL_FTP_PROTOCOL }}
-          server-dir: /${{ steps.extract_branch.outputs.branch }}/
+          server-dir: /
           local-dir: ./dist/
