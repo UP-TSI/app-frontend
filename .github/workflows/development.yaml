@@ -4,35 +4,35 @@ on:
   pull_request:
     branches: [ main ]
 
-jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: 🧪 Testing Frontend
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 14
-  #         cache: 'npm'
-  #     - run: npm install
-  #     - run: npm test
-      
+jobs:      
   build:
-    # needs: test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the app
+        run: npm run build
+        
       - name: 🧩 Extract branch name
         shell: bash
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
+      
       - name: 🚀 Deploy to cPanel
-        id: deploy
-        uses: pinkasey/cpanel-repository-action@v1.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          hostname: ${{ vars.CPANEL_DOMAIN }}
-          repository_root: ${{ secrets.CPANEL_REPOSITORIES_PATH }}/${{ vars.REPOSITORY_NAME }}-dev
-          cpanel_username: ${{ secrets.CPANEL_USERNAME }}
-          cpanel_token: ${{ secrets.CPANEL_API_TOKEN_DEV }}
-          branch: ${{ steps.extract_branch.outputs.branch }}
-      - name: echo deploy-duration
-        run: echo "Deployment took ${{ steps.deploy.outputs.duration }} milliseconds"
+          server: ${{ secrets.CPANEL_DOMAIN }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASS }}
+          server-dir: /${{ steps.extract_branch.outputs.branch }}/
+          local-dir: ./dist/
