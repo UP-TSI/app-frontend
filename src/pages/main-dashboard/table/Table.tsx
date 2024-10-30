@@ -13,7 +13,7 @@ const Table = ({ tableItems }: TableProps) => {
   return (
     <table className="max-h-[40rem] w-full gap-6">
       <thead>
-        <tr className="">
+        <tr className="text-xl">
           {columns.map((item, index) => {
             return (
               <th key={index}>

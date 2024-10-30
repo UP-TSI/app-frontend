@@ -9,9 +9,6 @@ const Filters = ({
     <div className="">
       <li className="flex flex-row justify-end gap-8">
         {Object.entries(availableFilters).map(([filterName, filterValue]) => {
-          {
-            console.log(availableFilters);
-          }
           return (
             <div
               key={filterName}
