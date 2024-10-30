@@ -24,6 +24,8 @@ const InfoTable = () => {
   const navigate = useNavigate();
   const { mainDataResponse, filterResponse } =
     useLoaderData() as InfoTableResponse;
+  console.log(mainDataResponse);
+
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [availableFilters, setAvailableFilters] = useState<Filter>({});
 
@@ -73,12 +75,12 @@ const InfoTable = () => {
         handleFilterModal={handleFilterModal}
         removeFilter={removeFilter}
       />
-      {isFilterModalOpen && (
-        <FilterModal
-          handleFilterModal={handleFilterModal}
-          verifyModalFilters={verifyModalFilters}
-        />
-      )}
+
+      <FilterModal
+        marginLeft={isFilterModalOpen ? "2xl:ml-20" : "2xl:ml-[70rem]"}
+        handleFilterModal={handleFilterModal}
+        verifyModalFilters={verifyModalFilters}
+      />
       <Table tableItems={mockItems} />
       <Pagination />
     </div>
