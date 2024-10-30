@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 const InfoTable = () => {
   const navigate = useNavigate();
-  const { mainDataResponse, filterResponse } =
+  const { filterResponse } =
     useLoaderData() as InfoTableResponse;
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [availableFilters, setAvailableFilters] = useState<Filter>({});
