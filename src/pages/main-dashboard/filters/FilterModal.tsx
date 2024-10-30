@@ -2,9 +2,15 @@ import { X } from "lucide-react";
 import { Form } from "react-router-dom";
 import FilterLine from "./FilterLine";
 
-const FilterModal = ({ handleFilterModal, verifyModalFilters }: any) => {
+const FilterModal = ({
+  handleFilterModal,
+  verifyModalFilters,
+  marginLeft,
+}: any) => {
   return (
-    <div className="fixed z-10 flex flex-col top-36 2xl:ml-20 bg-white shadow-2xl transform translate-x-full animate-slide-in rounded-3xl">
+    <div
+      className={`flex fixed z-10 flex flex-col top-36 ${marginLeft} bg-white shadow-2xl transform translate-x-full animate-slide-in rounded-3xl transition-all duration-300`}
+    >
       <div className="flex justify-between p-8">
         <span className="text-3xl font-light text-primary underline">
           Filtros

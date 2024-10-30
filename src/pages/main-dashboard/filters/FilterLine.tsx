@@ -7,7 +7,7 @@ const FilterLine = ({ field, inputFields }: FilterLineProps) => {
   return (
     <div>
       <div className="flex gap-8 justify-between">
-        <div className="flex gap-2.5">
+        <div className="flex gap-2.5 items-center">
           <ToggleFIlter
             isFilterOpen={isFilterOpen}
             setIsFilterOpen={setIsFilterOpen}
@@ -24,8 +24,8 @@ const FilterLine = ({ field, inputFields }: FilterLineProps) => {
               <input
                 disabled={!isFilterOpen}
                 className={`flex placeholder:text-primary ${
-                  !isFilterOpen && "placeholder:text-opacity-20 bg-white"
-                } placeholder:text-center p-2 w-aj text-sm rounded-full border-none outline-none transition-all duration-500 placeholder:transition-all placeholder:duration-500`}
+                  !isFilterOpen && "bg-white opacity-20"
+                } text-center p-2 w-aj text-sm rounded-full border-none outline-none transition-all duration-500 placeholder:transition-all placeholder:duration-500`}
                 key={index}
                 type="text"
                 name={key}
