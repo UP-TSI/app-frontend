@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 const InfoTable = () => {
   const navigate = useNavigate();
-  const { filterResponse } =
+  const { mainDataResponse, filterResponse } =
     useLoaderData() as InfoTableResponse;
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [availableFilters, setAvailableFilters] = useState<Filter>({});
@@ -32,7 +32,9 @@ const InfoTable = () => {
     Object.entries(filters).forEach(([key, value]) => {
       params.append(key, value.toString());
     });
-
+    
+    console.log(mainDataResponse)
+    
     navigate(`?${params.toString()}`);
   };
 
