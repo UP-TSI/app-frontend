@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
@@ -35,4 +35,4 @@ jobs:
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASS }}
           server-dir: /${{ steps.extract_branch.outputs.branch }}/
-          local-dir: ./dist/
+          local-dir: /dist/
