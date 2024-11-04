@@ -86,7 +86,7 @@ const InfoTable = () => {
   useEffect(() => {
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
-    params.set("page", currentPage.toString());
+    params.set("currentPage", currentPage.toString());
     params.set("perPage", perPage.toString());
     navigate(`?${params.toString()}`);
   }, [currentPage, perPage]);

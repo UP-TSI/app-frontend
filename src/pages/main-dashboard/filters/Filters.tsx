@@ -5,7 +5,7 @@ const Filters = ({
   handleFilterModal,
   removeFilter,
 }: TableFilterProps) => {
-  const { page, perPage, ...filteredFilters } = availableFilters;
+  const { currentPage, perPage, ...filteredFilters } = availableFilters;
 
   return (
     <div className="">
