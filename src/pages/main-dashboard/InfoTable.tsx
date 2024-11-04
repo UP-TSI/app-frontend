@@ -26,7 +26,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
     mainDataResponse = await mainDataResponse.json();
   } catch (error) {
     console.error("Failed to fetch main data:", error);
-    mainDataResponse = { Pagination: {}, data: { mainData: [] } }; // Set an empty array as the mainData to avoid breaking the frontend
+    mainDataResponse = {
+      pagination: { currentPage: 0, totalPages: 0 },
+      data: { mainData: [] },
+    };
     // mainDataResponse = mockMainDataResponse;
   }
 
@@ -37,6 +40,8 @@ const InfoTable = () => {
   const navigate = useNavigate();
   const { mainDataResponse, filterResponse } =
     useLoaderData() as InfoTableResponse;
+  console.log(mainDataResponse);
+
   const pagination = mainDataResponse.pagination;
   const mainData = mainDataResponse.mainData;
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -94,20 +99,19 @@ const InfoTable = () => {
   return (
     <div className="flex flex-col py-8 gap-8">
       <Filters
-        // setCurrentPage={setCurrentPage}
         availableFilters={availableFilters}
         handleFilterModal={handleFilterModal}
         removeFilter={removeFilter}
       />
+      <FilterModal
+        marginLeft={
+          isFilterModalOpen ? "ml-10 2xl:ml-24" : "ml-[30vw] 2xl:ml-[70rem]"
+        }
+        handleFilterModal={handleFilterModal}
+        verifyModalFilters={verifyModalFilters}
+      />
       {mainData?.length > 0 ? (
         <>
-          <FilterModal
-            marginLeft={
-              isFilterModalOpen ? "ml-10 2xl:ml-24" : "ml-[30vw] 2xl:ml-[70rem]"
-            }
-            handleFilterModal={handleFilterModal}
-            verifyModalFilters={verifyModalFilters}
-          />
           <Table tableItems={mainData} />
           <Pagination
             currentPage={currentPage}
