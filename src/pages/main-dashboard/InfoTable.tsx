@@ -18,7 +18,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   let mainDataResponse;
   try {
     mainDataResponse = await fetch(
-      `https://dev.ipesistemas.com.br/app/products?${queryStrings}`,
+      `https://dev.ipesistemas.com.br/api/products?${queryStrings}`,
       {
         method: "GET",
       }
