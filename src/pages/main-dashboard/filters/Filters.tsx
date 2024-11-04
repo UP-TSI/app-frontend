@@ -5,10 +5,12 @@ const Filters = ({
   handleFilterModal,
   removeFilter,
 }: TableFilterProps) => {
+  const { page, perPage, ...filteredFilters } = availableFilters;
+
   return (
     <div className="">
       <li className="flex flex-row justify-end gap-8">
-        {Object.entries(availableFilters).map(([filterName, filterValue]) => {
+        {Object.entries(filteredFilters).map(([filterName, filterValue]) => {
           return (
             <div
               key={filterName}

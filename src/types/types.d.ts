@@ -5,7 +5,7 @@ interface TableFilterProps {
 }
 
 interface TableItem {
-  id: number;
+  cod_barras: number;
   nome: string;
   v_compra: number;
   v_venda: number;
@@ -19,10 +19,24 @@ interface TableProps {
   tableItems: TableItems;
 }
 
+type responseData = {
+  mainData: TableItems;
+  pieChartData: Record<string, number>;
+  chartData: Record<string, number>;
+};
+
 interface MainDataResponse {
   pagination: Record<string, number>;
-  data: TableItems;
+  mainData: TableItems;
 }
+
+type PaginationProps = {
+  currentPage: number;
+  perPage: number;
+  totalPages: number;
+  setCurrentPage: (number) => void;
+  setPerPage: (number) => void;
+};
 
 type Filter = Record<string, string | number>;
 interface InfoTableResponse {
