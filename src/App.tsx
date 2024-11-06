@@ -2,10 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import MainDashboard from "./pages/main-dashboard/MainDashboard";
 import { loader } from "./pages/main-dashboard/InfoTable";
-import React from 'react';
-import Login from './pages/Login/Login';
-import Password from "./pages/Password/Password";
-
+import Login from "./pages/login/Login";
+import Password from "./pages/password/Password";
 
 const router = createBrowserRouter([
   {
