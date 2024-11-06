@@ -33,26 +33,26 @@ const FilterModal = ({
         <FilterLine
           field={"V. Compra"}
           inputFields={{
-            purchaseValueMax: "É menor que",
-            purchaseValueMin: "É maior que",
+            purchaseValueMin: "É menor que",
+            purchaseValueMax: "É maior que",
           }}
         />
         <FilterLine
           field={"V. Venda"}
           inputFields={{
-            saleValueMax: "É menor que",
-            saleValueMin: "É maior que",
+            saleValueMin: "É menor que",
+            saleValueMax: "É maior que",
           }}
         />
         <FilterLine
           field={"Lucro"}
-          inputFields={{ profitMax: "É menor que", profitMin: "É maior que" }}
+          inputFields={{ profitMin: "É menor que", profitMax: "É maior que" }}
         />
         <FilterLine
           field={"Estoque"}
           inputFields={{
-            quantityMax: "É menor que",
-            quantityMin: "É maior que",
+            quantityMin: "É menor que",
+            quantityMax: "É maior que",
           }}
         />
         <button
