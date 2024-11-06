@@ -13,7 +13,7 @@ const Table = ({ tableItems }: TableProps) => {
   return (
     <table className="max-h-[40rem] w-full gap-6">
       <thead>
-        <tr className="">
+        <tr className="text-xl">
           {columns.map((item, index) => {
             return (
               <th key={index}>
@@ -32,7 +32,7 @@ const Table = ({ tableItems }: TableProps) => {
               <th>
                 <div className="py-3 ml-12">
                   <div className="flex font-medium border-r-2 border-primary">
-                    {item.id}
+                    {item.cod_barras}
                   </div>
                 </div>
               </th>
