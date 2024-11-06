@@ -42,6 +42,14 @@ const Filters = ({
           );
         })}
       </li>
+      {Object.entries(filteredFilters).length > 0 && (
+        <button
+          className="bg-tertiary py-2 px-8 rounded-3xl text-white font-bold hover:text-primary hover:bg-quaternary hover:scale-105 transition-all duration-500"
+          onClick={() => removeFilter("removeAll")}
+        >
+          Limpar
+        </button>
+      )}
       <button
         className="text-primary hover:text-tertiary size-10"
         onClick={handleFilterModal}

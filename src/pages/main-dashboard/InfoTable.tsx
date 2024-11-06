@@ -86,6 +86,10 @@ const InfoTable = () => {
   }
 
   function removeFilter(filterName: string) {
+    if (filterName === "removeAll") {
+      updateQueryString({});
+      return;
+    }
     const { [filterName]: _, ...newFilterList } = availableFilters;
     updateQueryString(newFilterList);
   }
