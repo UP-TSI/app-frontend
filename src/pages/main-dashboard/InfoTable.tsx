@@ -74,12 +74,22 @@ const InfoTable = () => {
       }
     });
 
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const perPageParam = params.get("perPage");
+    if (perPageParam) {
+      filters["perPage"] = perPageParam;
+    }
     updateQueryString(filters);
     setCurrentPage(1);
     setIsFilterModalOpen(!isFilterModalOpen);
   }
 
   function removeFilter(filterName: string) {
+    if (filterName === "removeAll") {
+      updateQueryString({});
+      return;
+    }
     const { [filterName]: _, ...newFilterList } = availableFilters;
     updateQueryString(newFilterList);
   }
@@ -92,6 +102,10 @@ const InfoTable = () => {
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     params.set("currentPage", currentPage.toString());
+    if (params.get("perPage") !== perPage.toString()) {
+      params.set("currentPage", "1");
+      setCurrentPage(1);
+    }
     params.set("perPage", perPage.toString());
     navigate(`?${params.toString()}`);
   }, [currentPage, perPage]);
