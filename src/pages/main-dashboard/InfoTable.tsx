@@ -40,8 +40,6 @@ const InfoTable = () => {
   const navigate = useNavigate();
   const { mainDataResponse, filterResponse } =
     useLoaderData() as InfoTableResponse;
-  console.log(mainDataResponse);
-
   const pagination = mainDataResponse.pagination;
   const mainData = mainDataResponse.mainData;
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
