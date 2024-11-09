@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     loader: loader,
   },
   {
-    path: "/login",
+    path: "/username",
     element: <Login />,
   },
   {
