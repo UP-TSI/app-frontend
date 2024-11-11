@@ -2,31 +2,36 @@ import { ResponsivePie } from "@nivo/pie";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
+// Definição do formato do objeto "Produto"
 interface Produto {
   id: number;
   nome: string;
   valorAlocado: number;
 }
 
+// Componente do gráfico de barras
 const PieChart: React.FC = () => {
-  const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [produtos, setProdutos] = useState<Produto[]>([]); // Estado "produtos" que inicialmente armazena uma lista de objetos "Produto" vazia
 
+  // Fazemos uma requisição GET na rota abaixo
   useEffect(() => {
-    axios.get('http://localhost:3000/api/produtos')
+    axios.get('http://localhost:3000/api/produtos') // Essa rota será substituída
         .then(response => {
-            setProdutos(response.data.slice(0, 5));
+            setProdutos(response.data.slice(0, 5)); // Se a requisição for bem sucedida, o estado "Produto" é atualizado, e os dados são retornados no gráfico
         })
         .catch(error => {
-            console.error('Erro ao buscar produtos:', error);
-        });
+            console.error('Erro ao buscar produtos:', error); // Se a requisição for má sucedida, um erro é retornado no console
+        }); 
   }, []);
 
+  // Conjunto de dados gerado para mapear os produtos de acordo com o formato do gráfico de pizza
   const valorAlocadoData = produtos.map(produto => ({
     id: produto.nome,
     label: produto.nome,
     value: produto.valorAlocado,
   }));
 
+  // No final, retornamos a páginação do gráfico
   return (
     <div>
       <span className="font-bold text-4xl">Maior valor alocado por produto</span>

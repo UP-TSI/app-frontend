@@ -2,30 +2,35 @@ import { ResponsiveBar } from "@nivo/bar";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
+// Definição do formato do objeto "Produto"
 interface Produto {
   id: number;
   nome: string;
   lucroPotencial: number;
 }
 
+// Componente do gráfico de barras
 const BarChart: React.FC = () => {
-  const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [produtos, setProdutos] = useState<Produto[]>([]); // Estado "produtos" que inicialmente armazena uma lista de objetos "Produto" vazia
 
+  // Fazemos uma requisição GET na rota abaixo
   useEffect(() => {
     axios.get('http://localhost:3000/api/produtos') // Essa rota será substituída
         .then(response => {
-          setProdutos(response.data);
+          setProdutos(response.data.slice(0, 5)); // Se a requisição for bem sucedida, o estado "Produto" é atualizado, e os dados são retornados no gráfico
         })
         .catch(error => {
-          console.error('Erro ao buscar produtos:', error);
+          console.error('Erro ao buscar produtos:', error); // Se a requisição for má sucedida, um erro é retornado no console
         });
   }, []);
 
+  // Conjunto de dados gerado para mapear os produtos de acordo com o formato do gráfico de barras
   const lucroPotencialData = produtos.map(produto => ({
     nome: produto.nome,
     lucroPotencial: produto.lucroPotencial,
   }));
-
+  
+  // No final, retornamos a páginação do gráfico
   return (
       <div>
         <span className="font-bold text-4xl">Maior lucratividade potencial</span>
