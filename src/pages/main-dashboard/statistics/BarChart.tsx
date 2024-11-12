@@ -43,7 +43,7 @@ const BarChart: React.FC = () => {
           groupMode="grouped"
           valueScale={{ type: "linear" }}
           indexScale={{ type: "band", round: true }}
-          colors={{ scheme: "nivo" }}
+          colors={['#4A90E2', '#357ABD', '#2A65A0', '#1F4F82', '#153965']}
           borderColor={{
             from: "color",
             modifiers: [["darker", 1.6]],
