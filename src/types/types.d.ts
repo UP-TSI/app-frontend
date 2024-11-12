@@ -53,3 +53,23 @@ interface ToggleFilterProps {
   isFilterOpen: boolean;
   setIsFilterOpen: (value: boolean) => void;
 }
+
+interface ResponseFindUsername {
+  userExists: boolean;
+  name: string;
+}
+
+interface PasswordProps {
+  username: string;
+  authEmail: string;
+}
+
+interface LoginProps {
+  setUsername: (username: string) => void;
+  setUserExists: (userExists: boolean) => void;
+  setAuthEmail: (email: string) => void;
+}
+
+interface HeaderProps {
+  username: string;
+}

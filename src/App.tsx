@@ -2,8 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import MainDashboard from "./pages/main-dashboard/MainDashboard";
 import { loader } from "./pages/main-dashboard/InfoTable";
-import Login from "./pages/login/Login";
-import Password from "./pages/password/Password";
+import UserLogin from "./pages/login/UserLogin";
 
 const router = createBrowserRouter([
   {
@@ -12,12 +11,8 @@ const router = createBrowserRouter([
     loader: loader,
   },
   {
-    path: "/username",
-    element: <Login />,
-  },
-  {
-    path: "/password",
-    element: <Password />,
+    path: "/user-login",
+    element: <UserLogin />,
   },
 ]);
 
