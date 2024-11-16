@@ -15,9 +15,9 @@ const BarChart: React.FC = () => {
 
   // Fazemos uma requisição GET na rota abaixo
   useEffect(() => {
-    axios.get('http://localhost:3000/api/produtos') // Essa rota será substituída
+    axios.get('https://dev.ipesistemas.com.br/api/products/statistics/?graphType=potencialProfit')
         .then(response => {
-          setProdutos(response.data.slice(0, 5)); // Se a requisição for bem sucedida, o estado "Produto" é atualizado, e os dados são retornados no gráfico
+          setProdutos(response.data); // Se a requisição for bem sucedida, o estado "Produto" é atualizado, e os dados são retornados no gráfico
         })
         .catch(error => {
           console.error('Erro ao buscar produtos:', error); // Se a requisição for má sucedida, um erro é retornado no console

@@ -15,9 +15,9 @@ const PieChart: React.FC = () => {
 
   // Fazemos uma requisição GET na rota abaixo
   useEffect(() => {
-    axios.get('http://localhost:3000/api/produtos') // Essa rota será substituída
+    axios.get('https://dev.ipesistemas.com.br/api/products/statistics/?graphType=allocatedValue')
         .then(response => {
-            setProdutos(response.data.slice(0, 5)); // Se a requisição for bem sucedida, o estado "Produto" é atualizado, e os dados são retornados no gráfico
+            setProdutos(response.data); // Se a requisição for bem sucedida, o estado "Produto" é atualizado, e os dados são retornados no gráfico
         })
         .catch(error => {
             console.error('Erro ao buscar produtos:', error); // Se a requisição for má sucedida, um erro é retornado no console
@@ -37,7 +37,7 @@ const PieChart: React.FC = () => {
       <span className="font-bold text-4xl">Maior valor alocado por produto</span>
       <ResponsivePie
         data={valorAlocadoData}
-        colors={['#4A90E2', '#357ABD', '#2A65A0', '#1F4F82', '#153965']}
+        colors={{ scheme: 'blues' }}
         margin={{ top: 40, right: 80, bottom: 80, left: -40 }}
         innerRadius={0.5}
         padAngle={0.7}
