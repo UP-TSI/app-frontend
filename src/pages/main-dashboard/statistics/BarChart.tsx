@@ -36,6 +36,12 @@ const BarChart: React.FC = () => {
         <span className="font-bold text-4xl">Maior lucratividade potencial</span>
         <ResponsiveBar
           data={lucroPotencialData}
+          valueFormat={(value) =>
+            new Intl.NumberFormat('pt-BR', {
+              style: 'decimal',
+              maximumFractionDigits: 2,
+            }).format(value)
+          }
           keys={['lucroPotencial']}
           indexBy="nome"
           margin={{ top: 50, right: 30, bottom: 50, left: 60 }}
@@ -54,7 +60,7 @@ const BarChart: React.FC = () => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "produtos",
+            legend: "",
             legendPosition: "middle",
             legendOffset: 32,
             truncateTickAt: 0,
@@ -63,7 +69,7 @@ const BarChart: React.FC = () => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Lucro Potencial (R$)",
+            legend: "",
             legendPosition: "middle",
             legendOffset: -40,
             truncateTickAt: 0,

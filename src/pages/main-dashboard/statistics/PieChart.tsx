@@ -37,6 +37,12 @@ const PieChart: React.FC = () => {
       <span className="font-bold text-4xl">Maior valor alocado por produto</span>
       <ResponsivePie
         data={valorAlocadoData}
+        valueFormat={(value) =>
+          new Intl.NumberFormat('pt-BR', {
+            style: 'decimal',
+            maximumFractionDigits: 2,
+          }).format(value)
+        }
         colors={{ scheme: 'blues' }}
         margin={{ top: 40, right: 80, bottom: 80, left: -40 }}
         innerRadius={0.5}
@@ -62,7 +68,6 @@ const PieChart: React.FC = () => {
             id: "dots",
             type: "patternDots",
             background: "inherit",
-            color: "rgba(255, 255, 255, 0.3)",
             size: 4,
             padding: 1,
             stagger: true,
@@ -71,7 +76,6 @@ const PieChart: React.FC = () => {
             id: "lines",
             type: "patternLines",
             background: "inherit",
-            color: "rgba(255, 255, 255, 0.3)",
             rotation: -45,
             lineWidth: 6,
             spacing: 10,
