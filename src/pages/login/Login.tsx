@@ -37,14 +37,12 @@ const Login = ({ setUsername, setUserExists, setAuthEmail }: LoginProps) => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
     document.body.style.height = "100%";
-    document.body.style.overflow = "hidden";
 
     return () => {
       // Restaura os estilos ao desmontar o componente
       document.body.style.margin = "";
       document.body.style.padding = "";
       document.body.style.height = "";
-      document.body.style.overflow = "";
     };
   }, []);
 
