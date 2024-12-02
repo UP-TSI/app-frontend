@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import { Form } from "react-router-dom";
 import FilterLine from "./FilterLine";
+import NegativeStockFilterLine from "./NegativeStockFilterLine";
 
 const FilterModal = ({
   handleFilterModal,
@@ -26,6 +27,12 @@ const FilterModal = ({
         onSubmit={verifyModalFilters}
         className=" p-12 rounded-xl flex flex-col gap-4"
       >
+        <FilterLine
+          field="Código"
+          inputFields={{
+            cod_barras: "Ex: 0000000000000",
+          }}
+        />
         <FilterLine
           field={"Nome"}
           inputFields={{ equalTo: "Igual à", nameIncludes: "Contém" }}
@@ -55,6 +62,7 @@ const FilterModal = ({
             quantityMax: "É menor que",
           }}
         />
+        <NegativeStockFilterLine />
         <button
           className="text-white p-1.5 bg-primary rounded-xl"
           type="submit"

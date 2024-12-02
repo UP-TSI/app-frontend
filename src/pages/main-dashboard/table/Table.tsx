@@ -1,7 +1,7 @@
 import { ArrowDown } from "lucide-react";
 
 const columns = [
-  "Cod. Barras",
+  "Cód. Barras",
   "Nome",
   "V. Compra",
   "V. Venda",
