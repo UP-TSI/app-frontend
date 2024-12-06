@@ -11,6 +11,7 @@ const filterMapper: Record<string, string> = {
   profitMax: "Lucro máximo",
   quantityMin: "Quantidade mínima",
   quantityMax: "Quantidade máxima",
+  cod_barras: "Código de barras",
 };
 
 const Filters = ({
